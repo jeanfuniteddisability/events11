@@ -1,0 +1,80 @@
+<mat-card class="formcard">
+  <mat-card-header class="cardheader">Update User Details</mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="container" novalidate>
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Email Address" formControlName="email">
+          <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
+            {{ getErrorEmail() }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="First name" formControlName="fname">
+          <mat-error *ngIf="!fname.valid && fname.touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Last name" formControlName="lname">
+          <mat-error *ngIf="!lname.valid && lname.touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="UDC Number" formControlName="udcnumber">
+          <mat-error *ngIf="!udcnumber.valid && udcnumber.touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <textarea matInput placeholder="Medical Requirements" matTextareaAutosize matAutosizeMinRows="2"
+                    matAutosizeMaxRows="5" rows="5" formControlName="medreq"></textarea>
+          <mat-hint align="start">
+            <strong>
+              Medical requirements such as: Do you need assistance with
+              walking?
+              Do you need assistance with my
+              wheelchair? etc
+            </strong>
+          </mat-hint>
+          <mat-error *ngIf="!formGroup.controls['medreq'].valid && formGroup.controls['medreq'].touched">
+            Required field, can be maximal 50 characters.
+          </mat-error>
+        </mat-form-field>
+
+
+        <table width="100%" style="margin-bottom: 2vh">
+          <tr>
+            <td colspan="2" class="textblockred">
+              <div class="row" *ngIf="errorMessage">
+                <div class="errormessage">{{errorMessage}}</div>
+              </div>
+
+              <div class="row" *ngIf="successMessage">
+                <div class="successMessage">{{successMessage}}</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!--<div *ngIf="!showbooked">-->
+              <div class="buttonblock">
+                <button mat-raised-button color="accent" type="submit" style="width: 90%; margin-top: 2vh">
+                  UPDATE MY DETAILS
+                </button>
+              </div>
+              <!--</div>-->
+            </td>
+          </tr>
+        </table>
+
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

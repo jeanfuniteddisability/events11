@@ -1,0 +1,97 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="center center">
+  <mat-card class="logincard">
+    <!-- <mat-card-header class="cardheader">Login</mat-card-header> -->
+    <mat-card-content>
+      <div class="container" *ngIf="!post; else forminfo" novalidate>
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Email Address" formControlName="email">
+            <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
+              {{ getErrorEmail() }}
+            </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
+                   formControlName="password">
+            <mat-hint>
+              Choose a password of at least eight characters, one uppercase letter and one number
+            </mat-hint>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
+              {{ getErrorPassword() }}
+            </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="First name" formControlName="fname">
+            <mat-error *ngIf="!fname.valid && fname.touched">
+              {{ titleAlert }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Last name" formControlName="lname">
+            <mat-error *ngIf="!lname.valid && lname.touched">
+              {{ titleAlert }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="UDC Number" formControlName="udcnumber">
+            <mat-error *ngIf="!udcnumber.valid && udcnumber.touched">
+              {{ titleAlert }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <textarea matInput placeholder="Medical Requirements" matTextareaAutosize matAutosizeMinRows="2"
+                      matAutosizeMaxRows="5" rows="5" formControlName="medreq"></textarea>
+            <mat-hint align="start">
+              <strong>
+                Medical requirements such as: Do you need assistance with
+                walking?
+                Do you need assistance with my
+                wheelchair? etc
+              </strong>
+            </mat-hint>
+            <mat-error *ngIf="!formGroup.controls['medreq'].valid && formGroup.controls['medreq'].touched">
+              Required field, can be maximal 50 characters.
+            </mat-error>
+          </mat-form-field>
+
+          <div class="form-element">
+            <button mat-raised-button color="primary" type="submit" class="button">
+              CREATE MY
+              ACCOUNT
+            </button>
+          </div>
+
+          <div class="row" *ngIf="errorMessage">
+            <div class="errormessage">{{errorMessage}}</div>
+          </div>
+
+          <div class="row" *ngIf="successMessage">
+            <div class="successMessage">{{successMessage}}</div>
+          </div>
+
+
+          <div class="form-element">
+            <button mat-raised-button color="primary" class="button" (click)="signout()">
+              <Label>BACK TO LOGIN</Label>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<ng-template #forminfo>
+  <div class="container">
+    {{ post | json }}
+  </div>
+</ng-template>

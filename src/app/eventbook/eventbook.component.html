@@ -1,0 +1,236 @@
+
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+    <div gdAreas="header header | side content | footer footer"
+         gdGap="16px"
+         gdRows="auto auto auto"
+         gdAreas.lt-md="header | side | content | footer"
+         gdRows.lt-md="auto auto auto auto">
+      <div [style.grid-area]="'header'">
+        <div class="titlel1">{{ udcEvent.date }}</div>
+        <div class="titlel2">{{ udcEvent.title }}</div>
+      </div>
+      <div [style.grid-area]="'side'">
+        <mat-card class="imagecard">
+          <img mat-card-image src="{{ udcEvent.img }}" alt="{{ udcEvent.title }}" />
+          <div class="details2">Details</div>
+          <div class="carddescription"> {{udcEvent.descr}}</div>
+        </mat-card>
+        <table width="100%">
+          <tr>
+            <td colspan="2">
+              <mat-divider style="margin-bottom: 5vh;"></mat-divider>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="titlel2">
+              Transport and support requirements
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <mat-divider></mat-divider>
+            </td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center; margin-top: 15vh;">
+              <mat-icon aria-label="directions_car icon">directions_car</mat-icon>
+            </td>
+            <td width="85%" class="cardgridtext">
+              <table width="100%">
+                <tr>
+                  <td width=50%>I need transport to this event: </td>
+                  <td>
+                    <mat-slide-toggle formControlName="transport">
+                    </mat-slide-toggle>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr style="margin-top: 3vh;" *ngIf="formGroup.get('transport').value">
+            <td width="15%" style="text-align: center; margin-top: 15vh;">
+              <mat-icon aria-label="directions_car icon">directions_car</mat-icon>
+            </td>
+            <td width="85%" class="cardgridtext">
+              <table width="100%">
+                <tr>
+                  <td width=50%>How will I pay for my transport:</td>
+                  <td>
+                    <mat-radio-group aria-label="Select an option" formControlName="transportPay">
+                      <mat-radio-button value="1">Fee For Service</mat-radio-button><br />
+                      <mat-radio-button value="2" *ngIf="udc">Core Funding</mat-radio-button><br />
+                      <mat-radio-button value="3" *ngIf="udc">Transport Budget</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr style="margin-top: 3vh;">
+            <td width="15%" style="text-align: center; margin-top: 15vh;">
+              <mat-icon aria-label="person icon">person</mat-icon>
+            </td>
+            <td width="85%" class="cardgridtext">
+              <table width="100%">
+                <tr>
+                  <td width=50%>Support required :</td>
+                  <td>
+                    <mat-radio-group aria-label="Select an option" formControlName="careRatio"
+                                     matTooltip="If you require a dedicated support worker, select 1:1 support, otherwise  a support worker will be allocation for multiple event attendees"
+                                     matTooltipClass="tooltip-red">
+                      <mat-radio-button value="1">I need 1 to 1 support</mat-radio-button>
+                      <mat-radio-button value="2">I need group support</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr *ngIf="!udc">
+            <td width="15%" style="text-align: center; margin-top: 15vh;">
+              <mat-icon aria-label="person icon">person</mat-icon>
+            </td>
+            <td width="85%" class="cardgridtext">
+              <table width="100%">
+                <tr>
+                  <td width=50%>Would you like us to contact your Plan Manager</td>
+                  <td>
+                    <mat-slide-toggle formControlName="planManager">
+                    </mat-slide-toggle>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <mat-divider></mat-divider>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div style="margin-top: 3vh;">
+                <textarea rows="5" [value]="textareaValue" placeholder="Please enter comment or requests for this event"
+                          (input)="textareaValue = $event.target.value;" class="input-comment"></textarea>
+              </div>
+
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div [style.grid-area]="'content'">
+        <table width="100%">
+          <tr>
+            <td width="15%"></td>
+            <td width="25%"></td>
+            <td width="60%"></td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center;">
+              <mat-icon aria-label="home icon">home</mat-icon>
+            </td>
+            <td colspan="2" class="cardgridtext">{{ udcEvent.location }}</td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center;">
+              <mat-icon aria-label="calendar_today icon">calendar_today</mat-icon>
+            </td>
+            <td colspan="2" class="cardgridtext">{{ udcEvent.date }}</td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center;">
+              <mat-icon aria-label="access_time icon">access_time</mat-icon>
+            </td>
+            <td colspan="2" class="cardgridtext">{{ udcEvent.time }}</td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center;">
+              <mat-icon aria-label="attach_money icon">attach_money</mat-icon>
+            </td>
+            <td colspan="2" class="cardgridtext">Ticket Cost : {{ udcEvent.cost | currency }}</td>
+          </tr>
+          <!--<ng-container *ngIf="udcEvent.status > 2">
+           <tr>
+             <td colspan="3">
+               <mat-divider></mat-divider>
+             </td>
+           </tr>
+           <tr>
+             <td width="15%" style="text-align: center;">
+               <mat-icon aria-label="group icon">group</mat-icon>
+             </td>
+             <td width="45%" class="cardgridtextright">Support Cost :</td>
+             <td width="40%" class="cardgridtext">{{ udcEvent.carecost | currency }}</td>
+           </tr>
+           <tr>
+             <td width="15%" style="text-align: center;">
+               <mat-icon aria-label="airport_shuttle icon">airport_shuttle</mat-icon>
+             </td>
+             <td width="45%" class="cardgridtextright">Transport Cost :</td>
+             <td width="40%" class="cardgridtext">{{ udcEvent.transportcost | currency }}</td>
+           </tr>
+           <tr>
+             <td width="15%" style="text-align: center;">
+               <mat-icon aria-label="attach_money icon">attach_money</mat-icon>
+             </td>
+             <td width="45%" class="cardgridtextright">Payable Now :</td>
+             <td width="40%" class="cardgridtext">{{ +udcEvent.carecost + +udcEvent.transportcost | currency }}</td>
+           </tr>
+          <ng-container *ngIf="isNDIS == 1">
+             <tr>
+               <td colspan="3">
+                 <mat-divider></mat-divider>
+               </td>
+             </tr>
+             <tr>
+               <td width="15%" style="text-align: center;">
+                 <mat-icon aria-label="attach_money icon">attach_money</mat-icon>
+               </td>
+               <td width="45%" class="cardgridtextright">NDIS Allocated :</td>
+               <td width="40%" class="cardgridtext">{{ udcEvent.bankable | currency }}</td>
+             </tr>
+             <tr>
+               <td width="15%" style="text-align: center;">
+                 <mat-icon aria-label="attach_money icon">attach_money</mat-icon>
+               </td>
+               <td width="45%" class="cardgridtextright">Remaining :</td>
+               <td width="40%" class="cardgridtext">
+                 {{ +udcEvent.bankable - ( +udcEvent.carecost + +udcEvent.transportcost )| currency }}
+               </td>
+             </tr>
+           </ng-container>
+                  </ng-container>-->
+        </table>
+      </div>
+      <div [style.grid-area]="'footer'">
+        <table width="100%" style="margin-bottom: 2vh">
+          <tr>
+            <td colspan="2" class="textblockred">
+              {{bookedMessage}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="buttonblock">
+                <button mat-raised-button color="primary" style="width: 90%; margin-top: 2vh" (click)="backtolist()">
+                  BACK TO EVENT LIST
+                </button>
+              </div>
+            </td>
+            <td>
+              <!--<div *ngIf="!showbooked">-->
+              <div class="buttonblock">
+                <button mat-raised-button color="accent" style="width: 90%; margin-top: 2vh"
+                        [disabled]="showbooked">
+                  REQUEST TO JOIN
+                </button>
+              </div>
+              <!--</div>-->
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>

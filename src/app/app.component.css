@@ -1,0 +1,37 @@
+
+.headertitle{
+  text-align: center;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+.mat-toolbar.mat-primary {
+  background: #007bff;
+  color: #fff;
+}
+.mainbody{ 
+  /*background-color: wheat;
+   display: flex;
+  justify-content: center;
+  max-width: 1280px; */
+  text-align: center;
+}
+/* 
+.mainbody{
+  width: 600px;
+}
+
+ 
+@media (min-width: 1281px) {
+  .mainbody{
+    min-width: 600px;
+  }
+
+}
+@media (min-width: 320px) and (max-width: 1280px) {
+  .mainbody{
+    background-color: white;
+  }
+}
+  */

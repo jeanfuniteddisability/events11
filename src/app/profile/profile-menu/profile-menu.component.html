@@ -1,0 +1,23 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+  <div gdAreas="header header | side content | footer footer"
+       gdGap="16px"
+       gdRows="auto auto auto"
+       gdAreas.lt-md="header | side | content | footer"
+       gdRows.lt-md="auto auto auto auto">
+    <div [style.grid-area]="'header'">
+      <div class="titlel1">My Profile</div>
+    </div>
+    <div [style.grid-area]="'side'">
+      <mat-list>
+        <mat-list-item (click)="swapscreen(1)"> User Details </mat-list-item>
+        <mat-list-item (click)="swapscreen(2)">Change Password</mat-list-item>
+        <mat-list-item (click)="swapscreen(3)"> Authorization </mat-list-item>
+      </mat-list>
+    </div>
+    <div [style.grid-area]="'content'">
+      <app-profile-data *ngIf="screenno==1"></app-profile-data>
+      <app-profile-password *ngIf="screenno==2"></app-profile-password>
+      <app-profile-auth *ngIf="screenno==3"></app-profile-auth>
+    </div>
+  </div>
+</div>

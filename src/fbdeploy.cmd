@@ -1,0 +1,1 @@
+firebase deploy --only hosting  -m "Deploying V002"

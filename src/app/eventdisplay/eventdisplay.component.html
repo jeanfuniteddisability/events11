@@ -1,0 +1,237 @@
+
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+  <div gdAreas="header header | side content | footer footer"
+       gdGap="16px"
+       gdRows="auto auto auto"
+       gdAreas.lt-md="header | side | content | footer"
+       gdRows.lt-md="auto auto auto auto">
+    <div [style.grid-area]="'header'">
+      <div class="titlel1">{{ udcEvent.date }}</div>
+      <div class="titlel2">{{ udcEvent.title }}</div>
+    </div>
+    <div [style.grid-area]="'side'">
+      <mat-card class="imagecard">
+        <img mat-card-image src="{{ udcEvent.img }}" alt="{{ udcEvent.title }}" />
+        <div class="details2">Details</div>
+        <div class="carddescription"> {{udcEvent.descr}}</div>
+      </mat-card>
+
+    </div>
+    <div [style.grid-area]="'content'">
+      <mat-card class="sidecard">
+        <table width="100%">
+          <tr>
+            <td width="15%"></td>
+            <td width="25%"></td>
+            <td width="60%"></td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center;">
+              <mat-icon aria-label="home icon">home</mat-icon>
+            </td>
+            <td colspan="2" class="cardgridtext">{{ udcEvent.location }}</td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center;">
+              <mat-icon aria-label="calendar_today icon">calendar_today</mat-icon>
+            </td>
+            <td colspan="2" class="cardgridtext">{{ udcEvent.date }}</td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center;">
+              <mat-icon aria-label="access_time icon">access_time</mat-icon>
+            </td>
+            <td colspan="2" class="cardgridtext">{{ udcEvent.time }}</td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center;">
+              <mat-icon aria-label="attach_money icon">attach_money</mat-icon>
+            </td>
+            <td colspan="2" class="cardgridtext">Ticket Cost : {{ udcEvent.cost | currency }}</td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center;">
+              <mat-icon aria-label="group icon">group</mat-icon>
+            </td>
+            <td colspan="2" class="cardgridtext">Care Required : {{ udcEvent.careRatio }}</td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center;">
+              <mat-icon aria-label="airport_shuttle icon">airport_shuttle</mat-icon>
+            </td>
+            <td colspan="2" class="cardgridtext">Transport Required : {{ udcEvent.transport }}</td>
+          </tr>
+          <tr>
+            <td width="15%" style="text-align: center;">
+              <mat-icon aria-label="airport_shuttle icon">airport_shuttle</mat-icon>
+            </td>
+            <td colspan="2" class="cardgridtext">Transport Charge: {{ udcEvent.transportPay }}</td>
+          </tr>
+
+          <ng-container *ngIf="udcEvent.status > 2">
+            <ng-container *ngIf="udcEvent.status<6">
+              <tr>
+                <td width="15%" style="text-align: center;">
+                  <mat-icon aria-label="group icon">group</mat-icon>
+                </td>
+                <td width="45%" class="cardgridtextright">Support Cost :</td>
+                <td width="40%" class="cardgridtext">{{ udcEvent.carecost | currency }}</td>
+              </tr>
+
+              <tr>
+                <td width="15%" style="text-align: center;">
+                  <mat-icon aria-label="airport_shuttle icon">airport_shuttle</mat-icon>
+                </td>
+                <td width="45%" class="cardgridtextright">Transport Cost :</td>
+                <td width="40%" class="cardgridtext">{{ udcEvent.transportcost | currency }}</td>
+              </tr>
+
+              <ng-container *ngIf="udcEvent.isNDIS == 0">
+                <tr>
+                  <td width="15%" style="text-align: center;">
+                    <mat-icon aria-label="attach_money icon">attach_money</mat-icon>
+                  </td>
+                  <td width="45%" class="cardgridtextright">Payable Now :</td>
+                  <td width="40%" class="cardgridtext">{{ +udcEvent.carecost + +udcEvent.transportcost | currency }}</td>
+                </tr>
+              </ng-container>
+
+              <ng-container *ngIf="udcEvent.isNDIS == 1">
+                <tr>
+                  <td colspan="3">
+                    <mat-divider></mat-divider>
+                  </td>
+                </tr>
+                <tr height="">
+                  <td colspan="3" class="statusmessage">
+                    {{+udcEvent.carecost + +udcEvent.transportcost | currency  }} will be deducted from your event NDIS allowance
+                  </td>
+                </tr>
+                <!--<tr>
+                  <td width="15%" style="text-align: center;">
+                    <mat-icon aria-label="attach_money icon">attach_money</mat-icon>
+                  </td>
+                  <td width="45%" class="cardgridtextright">NDIS Allocated :</td>
+                  <td width="40%" class="cardgridtext">{{ udcEvent.bankable | currency }}</td>
+                </tr>
+                <tr>
+                  <td width="15%" style="text-align: center;">
+                    <mat-icon aria-label="attach_money icon">attach_money</mat-icon>
+                  </td>
+                  <td width="45%" class="cardgridtextright">Remaining :</td>
+                  <td width="40%" class="cardgridtext">
+                    {{ +udcEvent.bankable - ( +udcEvent.carecost + +udcEvent.transportcost )| currency }}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <mat-divider></mat-divider>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="15%" style="text-align: center;">
+                    <mat-icon aria-label="attach_money icon">attach_money</mat-icon>
+                  </td>
+                  <td width="45%" class="cardgridtextright">Payable Now :</td>
+                  <td width="40%" class="cardgridtext">
+                    {{+udcEvent.totalcost | currency }}
+                  </td>
+                </tr>-->
+              </ng-container>
+
+            </ng-container>
+          </ng-container>
+        </table>
+      </mat-card>
+
+      <div #paypal></div>
+
+    </div>
+    <div [style.grid-area]="'footer'">
+
+      <ng-container *ngIf="udcEvent.eventStatus != 5">
+        <div style="margin-top: 1vh;">
+          <ng-container *ngIf="udcEvent.eventStatus == 7">
+            <div class="statusmessage">
+              This event is scheduled
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="udcEvent.eventStatus<5">
+            <div *ngIf="udcEvent.status == 2" class="statusmessage">
+              You are booked for this event.
+              <!--{{eventSettings.bookNotification}}-->
+            </div>
+            <div *ngIf="udcEvent.status == 3" class="statusmessage">
+              {{eventSettings.tobeconfirmNotification}}
+            </div>
+            <div *ngIf="udcEvent.status == 4" class="statusmessage">
+              {{eventSettings.confirmNotification}}
+            </div>
+            <div *ngIf="udcEvent.status == 6" class="statusmessage">
+              This event is booked and paid for. Please wait for confirmation
+            </div>
+          </ng-container>
+        </div>
+
+        <div *ngIf="udcEvent.status<3">
+          <div style="margin-top: 3vh;">
+            <textarea rows="5" [value]="textareaValue" placeholder="Please enter comment or requests for this event"
+                      (input)="textareaValue = $event.target.value;" class="input-comment"></textarea>
+          </div>
+        </div>
+        <table width="100%">
+          <tr>
+            <td>
+              <div class="buttonblock">
+                <button mat-raised-button color="primary" style="width: 90%; margin-top: 2vh" (click)="backtolist()">
+                  BACK TO EVENT LIST
+                </button>
+              </div>
+            </td>
+            <td>
+              <div class="buttonblock" *ngIf="udcEvent.status == 2">
+                <button mat-raised-button color="accent" style="width: 100%; margin-top: 2vh"
+                        (click)="unbooknow(udcEvent.id)">
+                  CANCEL THIS EVENT
+                </button>
+              </div>
+              <div class="buttonblock" *ngIf="udcEvent.status == 3">
+                <button mat-raised-button color="accent" style="width: 100%; margin-top: 2vh"
+                        (click)="confirmevent(udcEvent.id)" [enabled]="!paidFor">
+                  CONFIRM THIS EVENT
+                </button>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+
+      </ng-container>
+      <ng-container *ngIf="udcEvent.eventStatus == 5">
+        <div>
+          <mat-card style="margin-top: 1vh;">
+            <div class="textblockred">
+              This event has been cancelled
+              <br />
+              Reason :
+              {{udcEvent.cancelReason}}
+            </div>
+          </mat-card>
+        </div>
+        <div class="buttonblock" *ngIf="udcEvent.status == 2">
+          <button mat-raised-button color="primary" style="width: 90%; margin-top: 2vh"
+                  (click)="unbooknow(udcEvent.id)">
+            REMOVE EVENT
+          </button>
+        </div>
+        <div class="buttonblock">
+          <button mat-raised-button color="primary" style="width: 90%; margin-top: 2vh" (click)="backtolist()">
+            HOME SCREEN
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

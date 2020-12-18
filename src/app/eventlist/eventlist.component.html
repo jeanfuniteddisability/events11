@@ -1,0 +1,48 @@
+<div class="listbody">
+  <!--<div class="headerline">
+    Hi {{user.firstName}} {{user.lastName}}. Welcome to the United Disability client portal
+  </div>-->
+  <ng-container>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="22px" fxLayoutAlign="flex-start center"
+         class="cardsection">
+      <div> <img src="./assets/img/UDClogo.png" height="50px" /> </div>
+      <div> My Booked Events</div>
+    </div>
+
+    <div class="cardList">
+      <ng-container *ngFor="let item of udcEventlist.events">
+        <app-eventcard [myevent]=item *ngIf="item.status != 1" class="cardListItem"></app-eventcard>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <div *ngIf="newEvents != 0">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start center"
+         class="cardsection">
+      <div> <img src="./assets/img/UDClogo.png" height="50px" /> </div>
+      <div> Events Near Me</div>
+    </div>
+    <div class="cardList">
+      <ng-container *ngFor="let item of udcEventlist.events">
+        <app-eventcard [myevent]=item *ngIf="item.status == 1 && item.nearMe == 1 && item.eventStatus<5 "></app-eventcard>
+      </ng-container>
+      <div>
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start center"
+         class="cardsection">
+      <div> <img src="./assets/img/UDClogo.png" height="50px" /> </div>
+      <div> All Other Events</div>
+    </div>
+    <div class="cardList">
+      <ng-container *ngFor="let item of udcEventlist.events">
+        <app-eventcard [myevent]=item *ngIf="item.status == 1 && item.nearMe == 0 && item.eventStatus<5"></app-eventcard>
+      </ng-container>
+      <div>
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+  </div>
+</div>

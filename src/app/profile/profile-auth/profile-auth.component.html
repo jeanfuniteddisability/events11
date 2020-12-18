@@ -1,0 +1,25 @@
+<mat-card class="formcard">
+  <mat-card-header class="cardheader">Update User Authority Settings</mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="container" novalidate>
+      <table>
+        <ng-container *ngFor="let item of authSettings">
+          <tr style="margin-bottom: 4vh">
+            <td width="90%" class="slide">
+              {{item.text}}
+            </td>
+            <td width="10%">
+              <mat-slide-toggle [color]="color"
+                                [checked]="item.setting == 1"
+                                [disabled]="disabled"
+                                (click)="updateToggle(item.id)">
+              </mat-slide-toggle>
+            </td>
+
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

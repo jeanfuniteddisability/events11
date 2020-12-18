@@ -1,0 +1,62 @@
+.eventcard {
+    margin-top: 50px;
+    max-width: 500px;
+    margin-bottom: 3vh;
+  }
+  
+.title{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 1vh;
+}
+
+.statusnotification{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: darkblue;
+}
+
+.cdate{
+    margin-top: 1vh;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 500;
+}
+  
+.container {
+    padding: 10px;
+    min-width: 350px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.green img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.infotable{
+    margin-top: 3vh; 
+    width: 100%;
+}
+.buttonblock{
+  text-align: center;
+  margin-top: 3vh;
+}
+
+
+.descr{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #2f5982;
+  }
+
+  .input-comment {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    width: 100%;
+}

@@ -1,0 +1,14 @@
+.cardheader {
+  background-color: aquamarine;
+  height: 50px;
+  text-align: center;
+  color: black;
+}
+
+.container {
+  padding: 10px;
+}
+
+.button {
+  width: 100%;
+}

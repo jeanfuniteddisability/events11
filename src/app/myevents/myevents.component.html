@@ -1,0 +1,171 @@
+<ng-container *ngIf="(bookedConfirmed + tobeConfirmedEvents) == 0">
+  <div style="text-align: center; margin-bottom: 1vh;">
+    <img src="./assets/img/UDClogo.png" style="margin-top: 50px;" />
+  </div>
+  <div class="descr" style="margin-top: 50px;">You have currently no events booked</div>
+</ng-container>
+
+<ng-container *ngIf="(bookedConfirmed + tobeConfirmedEvents) > 0" style="text-align: center;" >
+  <mat-card>
+    <mat-card-header style="text-align: center;">
+      <mat-card-title>
+        <ng-container *ngIf="type==2">
+          Booked Events
+        </ng-container>
+        <ng-container *ngIf="type==3">
+          Confirm Events
+        </ng-container>
+        <ng-container *ngIf="type==4">
+          Confirmed Events
+        </ng-container>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ng-container *ngFor="let item of udcEventlist.events">
+        <mat-card *ngIf="item.status == type" class="eventcard">
+          <mat-card-header style="text-align: center;">
+            <mat-card-title>{{ item.title }}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="{{ item.img }}" alt="{{ item.title }}">
+          <mat-card-content>
+            <div class="descr">
+              {{item.descr}}
+            </div>
+            <table class="infotable">
+              <tr>
+                <td class="cdate">Location :</td>
+                <td class="cdate">{{ item.location }}</td>
+              </tr>
+              <tr>
+                <td class="cdate">When :</td>
+                <td class="cdate">{{ item.date }}</td>
+              </tr>
+              <tr>
+                <td class="cdate">Time :</td>
+                <td class="cdate">{{ item.time }}</td>
+              </tr>
+              <tr>
+                <td class="cdate">Ticket Cost :</td>
+                <td class="cdate">{{ item.cost | currency }}</td>
+              </tr>
+              <tr *ngIf="type> 2">
+                <td class="cdate">Care Cost :</td>
+                <td class="cdate">{{ item.carecost | currency }}</td>
+              </tr>
+              <tr *ngIf="type > 2">
+                <td class="cdate">Transport Cost :</td>
+                <td class="cdate">{{ item.transportcost | currency }}</td>
+              </tr>
+              <tr *ngIf="type > 2">
+                <td></td>
+                <td>
+                  <mat-divider></mat-divider>
+                </td>
+              </tr>
+              <tr *ngIf="type > 2">
+                <td class="cdate">Total Cost :</td>
+                <td class="cdate"><b>{{ item.totalcost | currency }}</b></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <mat-divider></mat-divider>
+                </td>
+              </tr>
+            </table>
+            <div>
+              <mat-card style="margin-top: 1vh;">
+                <div *ngIf="item.status == 2" class="statusnotification">
+                  {{eventSettings.bookNotification}}
+                </div>
+                <div *ngIf="item.status == 3" class="statusnotification">
+                  {{eventSettings.tobeconfirmNotification}}
+                </div>
+                <div *ngIf="item.status == 4" class="statusnotification">
+                  {{eventSettings.confirmNotification}}
+                </div>
+              </mat-card>
+            </div>
+            <div *ngIf="item.status !== 4">
+              <table style="margin-top: 3vh; width: 100%;">
+                <tr>
+                  <td class="cdate">Comment</td>
+                </tr>
+                <tr>
+                  <td><textarea matInput rows="5" [value]="textareaValue" (input)="textareaValue = $event.target.value;"
+                      class="input-comment"></textarea></td>
+                </tr>
+              </table>
+            </div>
+            <div class="buttonblock" *ngIf="item.status == 2">
+              <button mat-raised-button color="primary" style="width: 90%; margin-top: 2vh"
+                (click)="unbooknow(item.id)">
+                CANCEL THIS EVENT
+              </button>
+            </div>
+            <div class="buttonblock" *ngIf="item.status == 3">
+              <button mat-raised-button color="primary" style="width: 90%; margin-top: 2vh"
+                (click)="confirmevent(item.id)">
+                CONFIRM THIS EVENT
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+      </ng-container>
+      <div class="buttonblock">
+        <button mat-raised-button color="primary" style="width: 90%; margin-top: 2vh" (click)="home()">
+          HOME SCREEN
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
+<!-- <div style="text-align: center; margin-bottom: 1vh;">
+  <img src="./assets/img/UDClogo.png" />
+</div>
+<div>
+  <div *ngFor="let item of udcEventlist.events">
+    <mat-card *ngIf="item.status == type" class="eventcard">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ item.title }} </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{ item.img }}" alt="{{ item.title }}">
+      <mat-card-content>
+        <div class="descr">
+          {{item.descr}}
+        </div>
+        <table class="infotable">
+          <tr>
+            <td class="cdate">Location :</td>
+            <td class="cdate">{{ item.location }}</td>
+          </tr>
+          <tr>
+            <td class="cdate">When :</td>
+            <td class="cdate">{{ item.date }}</td>
+          </tr>
+          <tr>
+            <td class="cdate">Time :</td>
+            <td class="cdate">{{ item.time }}</td>
+          </tr>
+          <tr>
+            <td class="cdate">Ticket Cost :</td>
+            <td class="cdate">{{ item.cost | currency }}</td>
+          </tr>
+        </table>
+        <div>
+          <mat-card>
+            <div *ngIf="item.status == 2" class="statusnotification">
+              {{eventSettings.bookNotification}}
+            </div>
+            <div *ngIf="item.status == 3" class="statusnotification">
+              {{eventSettings.confirmNotification}}
+            </div>
+          </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> -->

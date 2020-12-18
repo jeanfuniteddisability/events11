@@ -1,0 +1,254 @@
+
+.cardgridtext {
+  text-align: left;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(33,33,33);
+  text-rendering: optimizeLegibility;
+}
+
+.cardgridtextright {
+  text-align: right;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+}
+
+.titlel1 {
+  margin-top: 3vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  color: rgb(117,117,117);
+  line-height: 24px;
+}
+
+
+.titlel2 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: left;
+  color: rgb(33,33,33);
+  line-height: 36px;
+}
+
+.eventcard2 {
+  border: none;
+}
+
+.details2 {
+  margin-top: 2vh;
+  font-size: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(33,33,33);
+  text-align: left;
+}
+
+.textblock {
+  margin-top: 2vh;
+  font-size: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(33,33,33);
+  text-align: left;
+}
+
+
+.carddescription {
+  margin-top: 2vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  max-width: 500px;
+  text-align: left;
+  line-height: 24px;
+  white-space: pre-line;
+}
+
+.commenttextarea {
+  border: solid;
+  border-color: lightgray;
+}
+
+.input-comment {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  width: 100%;
+  border: darkgray;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+}
+
+.textblockred {
+  color: red;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.cardgridtext {
+  /*text-align: left;*/
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(33,33,33);
+}
+
+.tooltip-red {
+  color: red;
+  background: #b71c1c;
+}
+
+
+/* medium size viewport */
+@media screen and (min-device-width: 451px) and (-webkit-min-device-pixel-ratio: 1) {
+
+  .imagecard {
+    width: 600px !important;
+  }
+
+  .carddescription {
+    max-width: 500px;
+  }
+}
+
+/* small size viewport */
+@media screen and (device-width: 450px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) {
+}
+
+/*.title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 1vh;
+  text-align: left;
+}
+
+.title2 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 1vh;
+  text-align: center;
+}
+
+.cardheader{
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 3vh;
+}
+
+.eventstatus{
+  color:darkgreen;
+}
+
+
+
+.input-comment {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  width: 100%;
+  border: darkgray;
+}
+
+   
+@media (min-width: 1281px) {
+  .eventcard {
+    margin-top: 50px;
+     max-width: 800px;
+    margin-bottom: 3vh;
+    min-width: 700px;
+    text-align: center;
+  }
+
+}
+@media (min-width: 320px) and (max-width: 1280px) {
+  .eventcard {
+    margin-top: 50px;
+     max-width: 800px;
+    margin-bottom: 3vh;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+}*/
+
+
+/* 
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 1vh;
+  }
+  .descr {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #2f5982;
+  }
+  
+  .textblockred {
+    text-align: left;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 3vh;
+    color: red;
+  }
+  
+  .buttonblock {
+    text-align: center;
+    margin-top: 3vh;
+  }
+  
+  .prompt {
+    color: #808080;
+    margin-top: 1vh;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .displayfield {
+    margin-top: 1vh;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .textblock {
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .container {
+    padding: 10px;
+    min-width: 350px;
+    max-width: 500px;
+    width: 90%;
+  }
+  
+  .green img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .example-margin {
+    margin: 10px;
+  }
+  
+ 
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+   */

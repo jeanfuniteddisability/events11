@@ -1,0 +1,123 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="center center">
+  <mat-card class="logincard">
+    <!-- <mat-card-header class="cardheader">Login</mat-card-header> -->
+    <mat-card-content>
+      <div class="container" *ngIf="!post; else forminfo" novalidate>
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Email Address" formControlName="email">
+            <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
+              {{ getErrorEmail() }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+            <mat-hint>Choose a password of at least eight characters, one uppercase letter and one number</mat-hint>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
+              {{ getErrorPassword() }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="First name" formControlName="fname">
+            <mat-error *ngIf="!fname.valid && fname.touched">
+              {{ titleAlert }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Last name" formControlName="lname">
+            <mat-error *ngIf="!lname.valid && lname.touched">
+              {{ titleAlert }}
+            </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field class="form-element">
+            <mat-label>Date Of Birth</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="dob">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+
+          <mat-form-field class="form-element">
+            <mat-label>Region</mat-label>
+            <mat-select name="region" formControlName="region">
+              <mat-option *ngFor="let region of regions" [value]="region.regionName">
+                {{region.regionName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Provider" formControlName="provider">
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Plan Manager Email" formControlName="planmanager">
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Address Line" formControlName="addressline">
+          </mat-form-field>
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Suburb" formControlName="suburb">
+          </mat-form-field>
+
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Postcode" formControlName="postcode">
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="State" formControlName="state">
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <textarea matInput placeholder="medical requirements" matTextareaAutosize matAutosizeMinRows="2"
+                      matAutosizeMaxRows="5" rows="5" formControlName="medreq"></textarea>
+            <mat-hint align="start">
+              <strong>
+                Medical requirements such as: Do you need assistance with walking? Do you
+                need
+                assistance with my wheelchair? etc
+              </strong>
+            </mat-hint>
+            <mat-error *ngIf="!medreq.valid && medreq.touched">
+              Required field.
+            </mat-error>
+          </mat-form-field>
+
+          <div class="form-element">
+            <button mat-raised-button color="primary" type="submit" class="button">CREATE MY ACCOUNT</button>
+          </div>
+
+          <div class="row" *ngIf="errorMessage">
+            <div class="errormessage">{{errorMessage}}</div>
+          </div>
+
+          <div class="row" *ngIf="successMessage">
+            <div class="successMessage">{{successMessage}}</div>
+          </div>
+
+
+          <div class="form-element">
+            <button mat-raised-button color="primary" class="button" (click)="signout()">
+              <Label>BACK TO LOGIN</Label>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<ng-template #forminfo>
+  <div class="container">
+    {{ post | json }}
+  </div>
+</ng-template>

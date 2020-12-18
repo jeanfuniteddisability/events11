@@ -1,0 +1,35 @@
+<mat-card (click)="eventdisplay(myevent.id)" class="cardListItem">
+  <img mat-card-image src="{{ myevent.img }}" alt="{{ myevent.title }}">
+  <mat-card-content>
+    <div class="carddate">{{ myevent.date }}</div>
+    <div class="carddate">{{ myevent.time }}</div>
+
+    <div class="cardstatus">
+      <!--{{myevent.eventStatus}}
+  {{myevent.status}}-->
+      <ng-container *ngIf="myevent.eventStatus==1 && myevent.isBookedOut">
+        Sorry, this event is fully booked. 
+      </ng-container>
+      <ng-container *ngIf="myevent.eventStatus<5 && myevent.status == 2">
+        Event is booked. Awaiting confirmation
+      </ng-container>
+      <ng-container *ngIf="myevent.eventStatus<5 && myevent.status == 3">
+        Please confirm this event
+      </ng-container>
+      <ng-container *ngIf="myevent.eventStatus<5 && myevent.status == 4">
+        This event is confirmed
+      </ng-container>
+      <ng-container *ngIf="myevent.eventStatus<5 && myevent.status == 6">
+        This event is confirmed and paid for
+      </ng-container>
+      <ng-container *ngIf="myevent.eventStatus == 5">
+        This event has been cancelled
+      </ng-container>
+      <ng-container *ngIf="myevent.eventStatus == 7">
+        This event is scheduled.
+      </ng-container>
+    </div>
+    <div class="cardheader"> {{myevent.title}}</div>
+    <div class="cardlocation"> {{myevent.location}}</div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,49 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="center center">
+    <mat-card class="eventcard">
+        <!-- <mat-card-header class="cardheader">
+        <div class="cardheader"></div>
+    </mat-card-header> -->
+        <mat-card-content>
+            <div class="container">
+
+                <img src="./assets/img/UDClogo.png" />
+
+                <div class="descr">
+                    {{eventSettings.legal}}
+                </div>
+                <mat-divider></mat-divider>
+                <div class="descr">
+                    {{eventSettings.privacy}}
+                </div>
+                <mat-divider></mat-divider>
+                <div class="toggle">
+                    <mat-checkbox [(ngModel)]="showTicks">I agree with the terms and conditions
+                    </mat-checkbox>
+                </div>
+
+                <div class="buttonblock">
+                    <button mat-raised-button color="primary" style="width: 90%; margin-top: 2vh" (click)="signup(1)"
+                        [disabled]="!showTicks">
+                        UDC SIGNUP
+                    </button>
+                </div>
+
+                <div class="buttonblock">
+                    <button mat-raised-button color="primary" style="width: 90%; margin-top: 2vh" (click)="signup(2)"
+                        [disabled]="!showTicks">
+                        <Label>GUEST SIGNUP</Label>
+                    </button>
+                </div>
+
+
+                <div class="buttonblock">
+                    <button mat-raised-button color="primary" style="width: 90%; margin-top: 2vh" (click)="signout()">
+                        <Label>BACK TO LOGIN</Label>
+                    </button>
+                </div>
+
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+</div>
